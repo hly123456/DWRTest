@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>DWRTest</display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+  	<!-- dwr框架的核心控制器 -->
+    <servlet-name>dwr-invoker</servlet-name>
+    <servlet-class> 
+            org.directwebremoting.servlet.DwrServlet 
+        </servlet-class>
+    <init-param>
+      <param-name>crossDomainSessionSecurity</param-name>
+      <param-value>false</param-value>
+    </init-param>
+    <init-param>
+      <param-name>allowScriptTagRemoting</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <!-- 为了得到更详细的调试信息 -->
+    <init-param>
+      <param-name>debug</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <!-- 在服务器端启用反向ajax -->
+    <init-param>
+      <param-name>activeReverseAjaxEnabled</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <init-param>
+      <param-name>initApplicationScopeCreatorsAtStartup</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <init-param>
+      <param-name>maxWaitAfterWrite</param-name>
+      <param-value>100</param-value>
+    </init-param>
+    <!-- 在服务器启动阶段，该servlet实例被创建 -->
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>dwr-invoker</servlet-name>
+    <!-- 发送如下的请求，都会交给dwr的核心控制器处理 -->
+    <url-pattern>/dwr/*</url-pattern>
+  </servlet-mapping>
+</web-app>
